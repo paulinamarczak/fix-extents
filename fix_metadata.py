@@ -1,40 +1,3 @@
-# from arcgis.gis import GIS
-# import getpass
-
-# # Connect to your ArcGIS Online organization
-# PORTAL_URL = "https://governmentofbc.maps.arcgis.com"
-# agol_username = "Px.BCGS.Creator"
-# agol_password = getpass.getpass(prompt='Enter AGO password:')
-
-# gis = GIS(PORTAL_URL, agol_username, agol_password)
-
-# items = gis.content.search(query=f'owner:{gis.users.me.username} AND type:Web Map', max_items=100000)
-# # Iterate over each web map item and update its extent and viewpoint
-# for item in items:
-#     if item.title.startswith("British Columbia Geological Survey Critical Mineral Explorer") and not "App" in item.title:
-#         web_map = item.get_data()
-        
-#         # Update the extent and viewpoint as desired
-#         # For example, you can set a new extent using the following format:
-#         web_map["initialState"]["viewpoint"] =  {
-#             "targetGeometry": {
-#                 "spatialReference": {
-#                     "latestWkid": 3857,
-#                     "wkid": 102100
-#                 },
-#                 "xmin": -15475769.261834534,
-#                 "ymin": 6592893.77373104,
-#                 "xmax": -13037122.31142492,
-#                 "ymax": 8104512.445098283
-#             }
-#         }
-#       # Or set a new center and scale using the following format:
-#       # Update the web map item with the modified data
-#         item.update(data=web_map)
-
-#         print(f"Updated extent and viewpoint for: {item.title}")
-#     print("Finished all updates")
-
 
 # +-------------------------------------------------------------------------------------------------
 # Author: Paulina Marczak
@@ -63,7 +26,7 @@ class WebMapUpdater:
         items = self.gis.content.search(query=f'owner:{self.gis.users.me.username}', item_type="web map", max_items=10000)
 
         print("Will be updating all of the following:", items)
-        
+
         for item in items:
             if item.title.startswith(query_prefix):
                 web_map = item.get_data()
@@ -82,7 +45,7 @@ class WebMapUpdater:
 # Connect to your account
 
 portal_url = "https://governmentofbc.maps.arcgis.com"
-agol_username = "Px.BCGS.Creator"
+agol_username = "PUT_YOUR_USERNAME_HERE"
 agol_password = getpass.getpass(prompt='Enter AGO password:')
 
 # Initialize the WebMapUpdater class
@@ -92,10 +55,10 @@ updater = WebMapUpdater(portal_url, agol_username, agol_password)
 # This is best done by manually saving one of your maps to the scale and extent you want.
 # Then extract the ranges in AGO Assistant in the Data tab of your map and paste them below.
 
-xmin = -15475769.261834534
-ymin = 6592893.77373104
-xmax = -13037122.31142492
-ymax = 8104512.445098283
+xmin = -15475769.261834534 # PUT IN YOUR OWN EXTENTS HERE
+ymin = 6592893.77373104 # PUT IN YOUR OWN EXTENTS HERE
+xmax = -13037122.31142492 # PUT IN YOUR OWN EXTENTS HERE
+ymax = 8104512.445098283 # PUT IN YOUR OWN EXTENTS HERE
 
 new_viewpoint = {
     "targetGeometry": {
@@ -112,7 +75,7 @@ new_viewpoint = {
 
 # Your maps should be named with the same prefix so they can be grouped.
 
-query_prefix = "British Columbia Geological Survey Critical Mineral Explorer"
+query_prefix = "PUT YOUR PREFIX HERE"
 
 # +-------------------------------------------------------------------------------------------------
 
