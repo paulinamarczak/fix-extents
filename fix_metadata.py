@@ -60,9 +60,12 @@ class WebMapUpdater:
 
     def update_webmaps(self, query_prefix, new_viewpoint):
 
-        items = self.gis.content.search(query=f'owner:{self.gis.users.me.username} AND type:Web Map', max_items=10000)
+        items = self.gis.content.search(query=f'owner:{self.gis.users.me.username}', item_type="web map", max_items=10000)
+
+        print("Will be updating all of the following:", items)
+        
         for item in items:
-            if item.title.startswith(query_prefix) and not "App" in item.title:
+            if item.title.startswith(query_prefix):
                 web_map = item.get_data()
                 web_map["initialState"]["viewpoint"] = new_viewpoint
                 item.update(data=web_map)

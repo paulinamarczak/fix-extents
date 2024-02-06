@@ -29,6 +29,7 @@ This script is easily called from opening a Notebook in ArcGIS Pro. No additiona
 
 The script only works if all your web maps have the same prefix.
 
+
 # Credits
 
 
